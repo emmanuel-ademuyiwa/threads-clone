@@ -25,7 +25,7 @@ const RootLayout: FC<layoutProps> = ({ children }) => {
         <body className={`${inter.className}`}>
           <TopBar />
           {children}
-          <main>
+          <main className='flex flex-row'>
             <LeftSideBar />
             <section className='main-container'>
               <div className='w-full max-w-4xl'>{children}</div>
