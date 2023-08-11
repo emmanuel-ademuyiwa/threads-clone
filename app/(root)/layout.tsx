@@ -2,6 +2,10 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Inter } from 'next/font/google';
 import { FC, ReactNode } from 'react';
 import '../globals.css';
+import TopBar from '@/components/Shared/TopBar/TopBar';
+import LeftSideBar from '@/components/Shared/LeftSideBar/LeftSideBar';
+import RightSideBar from '@/components/Shared/RightSideBar/RightSideBar';
+import BottomBar from '@/components/Shared/BottomBar/BottomBar';
 
 interface layoutProps {
   children: ReactNode;
@@ -18,7 +22,18 @@ const RootLayout: FC<layoutProps> = ({ children }) => {
   return (
     <ClerkProvider>
       <html lang='en'>
-        <body className={`${inter.className} bg-dark-1`}>{children}</body>
+        <body className={`${inter.className}`}>
+          <TopBar />
+          {children}
+          <main>
+            <LeftSideBar />
+            <section className='main-container'>
+              <div className='w-full max-w-4xl'>{children}</div>
+            </section>
+            <RightSideBar />
+          </main>
+          <BottomBar />
+        </body>
       </html>
     </ClerkProvider>
   );
