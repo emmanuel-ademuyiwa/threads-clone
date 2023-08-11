@@ -7,9 +7,7 @@ import { SignOutButton, SignedIn, useAuth } from '@clerk/nextjs';
 import type { FC } from 'react';
 import { sidebarLinks } from '@/constants';
 
-interface LeftSideBarProps {}
-
-const LeftSideBar: FC<LeftSideBarProps> = ({}) => {
+const LeftSideBar: FC = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { userId } = useAuth();
@@ -24,7 +22,7 @@ const LeftSideBar: FC<LeftSideBarProps> = ({}) => {
 
           if (link.route === '/profile') link.route = `${link.route}/${userId}`;
 
-          return ( 
+          return (
             <Link
               href={link.route}
               key={link.label}

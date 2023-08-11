@@ -3,9 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { FC } from 'react';
 
-interface TopBarProps {}
-
-const TopBar: FC<TopBarProps> = ({}) => {
+const TopBar: FC = () => {
   return (
     <nav className='topbar'>
       <Link href='/' className='flex items-center gap-4'>
