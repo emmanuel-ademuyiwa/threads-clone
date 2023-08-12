@@ -23,6 +23,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useUploadThing } from '@/lib/uploadthing';
 import { isBase64Image } from '@/lib/utils';
 import { UserValidation } from '@/lib/validations/user';
+import { updateUser } from '@/lib/actions/user.action';
 
 interface AccountProfileProps {
   user: {
@@ -65,7 +66,14 @@ const AccountProfile: FC<AccountProfileProps> = ({ user, btnTitle }) => {
       }
     }
 
- 
+    await updateUser({
+      name: values.name,
+      path: pathname,
+      username: values.username,
+      userId: user.id,
+      bio: values.bio,
+      image: values.profile_photo,
+    });
 
     if (pathname === '/profile/edit') {
       router.back();

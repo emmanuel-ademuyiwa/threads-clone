@@ -2,6 +2,7 @@
 
 import { connectToDB } from '../mongoose';
 import User from '../models/user.model';
+import Community from '../models/community.model';
 
 import { revalidatePath } from 'next/cache';
 
@@ -41,6 +42,21 @@ export async function updateUser({
       revalidatePath(path);
     }
   } catch (error: any) {
-    throw new Error(`Failed to create/update user: ${error.message}`);
+    console.log('🚀 ~ file: user.action.ts:46 ~ error.message:', error.message);
+    // throw new Error(`Failed to create/update user: ${error.message}`);
+  }
+}
+
+
+export async function fetchUser(userId: string) {
+  try {
+    connectToDB();
+
+    return await User.findOne({ id: userId }).populate({
+      path: 'communities',
+      model: Community,
+    });
+  } catch (error: any) {
+    throw new Error(`Failed to fetch user: ${error.message}`);
   }
 }
