@@ -1,12 +1,12 @@
-import { currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { currentUser } from '@clerk/nextjs';
+import { redirect } from 'next/navigation';
 
-import Searchbar from "@/components/shared/Searchbar";
-import Pagination from "@/components/shared/Pagination";
-import CommunityCard from "@/components/cards/CommunityCard";
+import Searchbar from '@/components/shared/Searchbar';
+import Pagination from '@/components/shared/Pagination';
+import CommunityCard from '@/components/cards/CommunityCard';
 
-import { fetchUser } from "@/lib/actions/user.actions";
-import { fetchCommunities } from "@/lib/actions/community.actions";
+import { fetchUser } from '@/lib/actions/user.actions';
+import { fetchCommunities } from '@/lib/actions/community.actions';
 
 async function Page({
   searchParams,
@@ -14,10 +14,9 @@ async function Page({
   searchParams: { [key: string]: string | undefined };
 }) {
   const user = await currentUser();
-  if (!user) return null;
-
+  if (!user) return redirect('/sign-in');
   const userInfo = await fetchUser(user.id);
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  if (!userInfo?.onboarded) redirect('/onboarding');
 
   const result = await fetchCommunities({
     searchString: searchParams.q,

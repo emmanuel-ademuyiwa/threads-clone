@@ -1,16 +1,14 @@
-import Image from "next/image";
-import Link from "next/link";
-import { currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
-import { fetchUser, getActivity } from "@/lib/actions/user.action";
-
+import Image from 'next/image';
+import Link from 'next/link';
+import { currentUser } from '@clerk/nextjs';
+import { redirect } from 'next/navigation';
+import { fetchUser, getActivity } from '@/lib/actions/user.action';
 
 async function Page() {
   const user = await currentUser();
-  if (!user) return null;
-
+  if (!user) return redirect('/sign-in');
   const userInfo = await fetchUser(user.id);
-  if (!userInfo?.onboarded) redirect("/onboarding");
+  if (!userInfo?.onboarded) redirect('/onboarding');
 
   const activity = await getActivity(userInfo._id);
 
@@ -24,17 +22,18 @@ async function Page() {
             {activity.map((activity) => (
               <Link key={activity._id} href={`/thread/${activity.parentId}`}>
                 <article className='activity-card'>
-                  <Image
-                    src={activity.author.image}
-                    alt='user_logo'
-                    width={20}
-                    height={20}
-                    className='rounded-full object-cover'
-                  />
+                  <div className='relative w-5 h-5'>
+                    <Image
+                      src={activity.author.image}
+                      alt='user_logo'
+                      fill
+                      className='rounded-full object-cover'
+                    />
+                  </div>
                   <p className='!text-small-regular text-light-1'>
                     <span className='mr-1 text-primary-500'>
-                      {activity.author.name}
-                    </span>{" "}
+                      {activity.author.username}
+                    </span>{' '}
                     replied to your thread
                   </p>
                 </article>

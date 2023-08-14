@@ -1,19 +1,18 @@
-import Image from "next/image";
-import { currentUser } from "@clerk/nextjs";
+import Image from 'next/image';
+import { currentUser } from '@clerk/nextjs';
 
-import { communityTabs } from "@/constants";
+import { communityTabs } from '@/constants';
 
-import UserCard from "@/components/cards/UserCard";
-import ThreadsTab from "@/components/shared/ThreadsTab";
-import ProfileHeader from "@/components/shared/ProfileHeader";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import UserCard from '@/components/cards/UserCard';
+import ThreadsTab from '@/components/shared/ThreadsTab';
+import ProfileHeader from '@/components/shared/ProfileHeader';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import { fetchCommunityDetails } from "@/lib/actions/community.actions";
+import { fetchCommunityDetails } from '@/lib/actions/community.actions';
 
 async function Page({ params }: { params: { id: string } }) {
   const user = await currentUser();
-  if (!user) return null;
-
+  if (!user) return redirect('/sign-in');
   const communityDetails = await fetchCommunityDetails(params.id);
 
   return (
@@ -42,7 +41,7 @@ async function Page({ params }: { params: { id: string } }) {
                 />
                 <p className='max-sm:hidden'>{tab.label}</p>
 
-                {tab.label === "Threads" && (
+                {tab.label === 'Threads' && (
                   <p className='ml-1 rounded-sm bg-light-4 px-2 py-1 !text-tiny-medium text-light-2'>
                     {communityDetails.threads.length}
                   </p>

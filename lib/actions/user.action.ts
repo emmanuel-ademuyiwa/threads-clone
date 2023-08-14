@@ -175,7 +175,7 @@ export async function getActivity(userId: string) {
     }).populate({
       path: 'author',
       model: User,
-      select: 'name image _id',
+      select: 'username image _id',
     });
 
     return replies;

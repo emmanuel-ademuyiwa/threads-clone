@@ -6,6 +6,7 @@ import TopBar from '@/components/Shared/TopBar/TopBar';
 import LeftSideBar from '@/components/Shared/LeftSideBar/LeftSideBar';
 import RightSideBar from '@/components/Shared/RightSideBar/RightSideBar';
 import BottomBar from '@/components/Shared/BottomBar/BottomBar';
+import { dark } from '@clerk/themes';
 
 interface layoutProps {
   children: ReactNode;
@@ -20,9 +21,13 @@ const inter = Inter({ subsets: ['latin'] });
 
 const RootLayout: FC<layoutProps> = ({ children }) => {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang='en'>
-        <body className={`${inter.className}`}>
+        <body className={`${inter.className} bg-dark-1`}>
           <TopBar />
           <main className='flex flex-row'>
             <LeftSideBar />
