@@ -1,19 +1,17 @@
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "@lib/actions/user.action.ts",
+      "use": "@vercel/node@1.10.0",
+      "config": {
+        "maxDuration": 30
+      }
+    }
+  ],
   "functions": {
-    "updateUser": {
-      "maxDuration": 60
-    },
-    "fetchUser": {
-      "maxDuration": 60
-    },
-    "fetchUserPosts": {
-      "maxDuration": 60
-    },
-    "fetchUsers": {
-      "maxDuration": 60
-    },
-    "getActivity": {
-      "maxDuration": 60
+    "lib/**/*.ts": {
+      "maxDuration": 30
     }
   }
 }
