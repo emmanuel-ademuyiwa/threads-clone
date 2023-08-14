@@ -1,19 +1,19 @@
 {
   "functions": {
     "updateUser": {
-      "maxDuration": 10
+      "maxDuration": 60
     },
     "fetchUser": {
-      "maxDuration": 10
+      "maxDuration": 60
     },
     "fetchUserPosts": {
-      "maxDuration": 10
+      "maxDuration": 60
     },
     "fetchUsers": {
-      "maxDuration": 10
+      "maxDuration": 60
     },
     "getActivity": {
-      "maxDuration": 10
+      "maxDuration": 60
     }
   }
 }
