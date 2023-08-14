@@ -17,7 +17,6 @@ interface Params {
   image: string;
   path: string;
 }
-
 export async function updateUser({
   userId,
   bio,
@@ -49,7 +48,6 @@ export async function updateUser({
     // throw new Error(`Failed to create/update user: ${error.message}`);
   }
 }
-
 
 export async function fetchUser(userId: string) {
   try {
@@ -95,7 +93,6 @@ export async function fetchUserPosts(userId: string) {
     throw error;
   }
 }
-
 
 export async function fetchUsers({
   userId,
@@ -154,7 +151,6 @@ export async function fetchUsers({
     throw error;
   }
 }
-
 
 export async function getActivity(userId: string) {
   try {
