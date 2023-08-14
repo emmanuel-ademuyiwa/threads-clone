@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { z } from "zod";
-import Image from "next/image";
-import { useForm } from "react-hook-form";
-import { usePathname } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from 'zod';
+import Image from 'next/image';
+import { useForm } from 'react-hook-form';
+import { usePathname } from 'next/navigation';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
   Form,
@@ -12,13 +12,13 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form";
+} from '@/components/ui/form';
 
-
-import { CommentValidation } from "@/lib/validations/thread";
-import { addCommentToThread } from "@/lib/actions/thread.actions";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { CommentValidation } from '@/lib/validations/thread';
+import { addCommentToThread } from '@/lib/actions/thread.actions';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface Props {
   threadId: string;
@@ -32,7 +32,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
   const form = useForm<z.infer<typeof CommentValidation>>({
     resolver: zodResolver(CommentValidation),
     defaultValues: {
-      thread: "",
+      thread: '',
     },
   });
 
@@ -55,15 +55,19 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
           name='thread'
           render={({ field }) => (
             <FormItem className='flex w-full items-center gap-3'>
-              <FormLabel>
-                <Image
-                  src={currentUserImg}
-                  alt='current_user'
-                  width={48}
-                  height={48}
-                  className='rounded-full object-cover'
-                />
-              </FormLabel>
+              <div className='flex flex-col items-center'>
+                <FormLabel className='relative h-11 w-11'>
+                  <Image
+                    src={currentUserImg}
+                    alt='user_community_image'
+                    fill
+                    className='cursor-pointer rounded-full object-cover'
+                  />
+                </FormLabel>
+
+                <div className='thread-card_bar' />
+              </div>
+
               <FormControl className='border-none bg-transparent'>
                 <Input
                   type='text'
