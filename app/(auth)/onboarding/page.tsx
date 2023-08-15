@@ -3,9 +3,13 @@ import { fetchUser } from '@/lib/actions/user.action';
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
+export const config = {
+  runtime: 'edge', // this is a pre-requisite
+  regions: ['iad1'], // only execute this function in iad1
+};
+
 async function Page() {
   const user: any = await currentUser();
-  console.log("🚀 ~ file: page.tsx:8 ~ Page ~ user:", user)
 
   const userInfo = await fetchUser(user.id);
   if (userInfo?.onboarded) redirect('/');
