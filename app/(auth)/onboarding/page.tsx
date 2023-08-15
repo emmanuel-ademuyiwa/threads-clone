@@ -3,8 +3,6 @@ import { fetchUser } from '@/lib/actions/user.action';
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
-export const maxDuration = 60;
-
 async function Page() {
   const user: any = await currentUser();
 

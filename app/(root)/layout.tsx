@@ -12,8 +12,6 @@ interface layoutProps {
   children: ReactNode;
 }
 
-export const maxDuration = 60;
-
 export const metadata = {
   title: 'Threads',
   description: 'A Next.js 13 Meta Threads Application',
