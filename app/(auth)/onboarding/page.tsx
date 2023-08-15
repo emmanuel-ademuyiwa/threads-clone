@@ -3,10 +3,7 @@ import { fetchUser } from '@/lib/actions/user.action';
 import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
-export const config = {
-  runtime: 'edge', // this is a pre-requisite
-  regions: ['iad1'], // only execute this function in iad1
-};
+export const maxDuration = 60;
 
 async function Page() {
   const user: any = await currentUser();
